@@ -743,7 +743,6 @@ class Zero123Guidance(BaseObject):
         for t in self.scheduler.timesteps:
             x_in = torch.cat([latents] * 2)
             t_in = torch.cat([t.reshape(1).repeat(B)] * 2).to(self.device)
-
             noise_pred = self.model.apply_model(x_in, t_in, cond)
             noise_pred_uncond, noise_pred_cond = noise_pred.chunk(2)
             noise_pred = noise_pred_uncond + scale * (
